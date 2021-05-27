@@ -86,3 +86,11 @@ sed -i 's/<\/tomcat-users>/<role rolename="manager-gui"\/><role rolename="manage
 tomcatdown
 
 tomcatup
+
+echo "Install complete"
+
+tomcatdown
+
+echo "Rebooting Tomcat"
+
+tomcatup
