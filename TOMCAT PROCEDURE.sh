@@ -53,35 +53,35 @@ sleep 2
 
 # Tomcat installation
 cd /opt
-wget https://apache.mirror.colo-serv.net/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz
-tar -xvzf /opt/apache-tomcat-8.5.66.tar.gz
+wget https://muug.ca/mirror/apache-dist/tomcat/tomcat-10/v10.0.6/bin/apache-tomcat-10.0.6.tar.gz
+tar -xvzf /opt/apache-tomcat-10.0.6.tar.gz
 
-chmod +x /opt/apache-tomcat-8.5.66/bin/startup.sh
-chmod +x /opt/apache-tomcat-8.5.66/bin/shutdown.sh
+chmod +x /opt/apache-tomcat-10.0.6/bin/startup.sh
+chmod +x /opt/apache-tomcat-10.0.6/bin/shutdown.sh
 
 # Creating a soft link to start Tomcat
-ln -s /opt/apache-tomcat-8.5.66/bin/startup.sh /usr/local/bin/tomcatup
-ln -s /opt/apache-tomcat-8.5.66/bin/shutdown.sh /usr/local/bin/tomcatdown
+ln -s /opt/apache-tomcat-10.0.6/bin/startup.sh /usr/local/bin/tomcatup
+ln -s /opt/apache-tomcat-10.0.6/bin/shutdown.sh /usr/local/bin/tomcatdown
 
 firewall-cmd --permanent --add-port=8090/tcp
 
 firewall-cmd --reload
 
 
-sed -i 's/8080/8090/g' /opt/apache-tomcat-8.5.66/conf/server.xml
+sed -i 's/8080/8090/g' /opt/apache-tomcat-10.0.6/conf/server.xml
 
 # Modifying context.xml files
-sed -i '21 s/^/<!--/' /opt/apache-tomcat-8.5.66/webapps/host-manager/META-INF/context.xml
-sed -i '22 s/$/-->/' /opt/apache-tomcat-8.5.66/webapps/host-manager/META-INF/context.xml
+sed -i '21 s/^/<!--/' /opt/apache-tomcat-10.0.6/webapps/host-manager/META-INF/context.xml
+sed -i '22 s/$/-->/' /opt/apache-tomcat-10.0.6/webapps/host-manager/META-INF/context.xml
 
-sed -i '21 s/^/<!--/' /opt/apache-tomcat-8.5.66/webapps/manager/META-INF/context.xml
-sed -i '22 s/$/-->/' /opt/apache-tomcat-8.5.66/webapps/manager/META-INF/context.xml
+sed -i '21 s/^/<!--/' /opt/apache-tomcat-10.0.6/webapps/manager/META-INF/context.xml
+sed -i '22 s/$/-->/' /opt/apache-tomcat-10.0.6/webapps/manager/META-INF/context.xml
 
 ## Alternative - sed -i 's/<Valve/<!-- <Valve/; s/<\/Context>/ --> <\/Context>/' context.xml
 
 tomcatup
 
-sed -i 's/<\/tomcat-users>/<role rolename="manager-gui"\/><role rolename="manager-script"\/><role rolename="manager-jmx"\/><role rolename="manager-status"\/><user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"\/><user username="deployer" password="deployer" roles="manager-script"\/><user username="tomcat" password="s3cret" roles="manager-gui"\/><\/tomcat-users>/g' /opt/apache-tomcat-8.5.66/conf/tomcat-users.xml
+sed -i 's/<\/tomcat-users>/<role rolename="manager-gui"\/><role rolename="manager-script"\/><role rolename="manager-jmx"\/><role rolename="manager-status"\/><user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"\/><user username="deployer" password="deployer" roles="manager-script"\/><user username="tomcat" password="s3cret" roles="manager-gui"\/><\/tomcat-users>/g' /opt/apache-tomcat-10.0.6/conf/tomcat-users.xml
 
 tomcatdown
 
