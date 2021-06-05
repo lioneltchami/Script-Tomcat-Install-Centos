@@ -1,4 +1,5 @@
 #!/bin/bash
+# To set up centos
 
 #Script to setup Tomcat on centOS/RHEL 6.x and 7.x
 
