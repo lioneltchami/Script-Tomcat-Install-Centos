@@ -1,4 +1,5 @@
 #!/bin/bash
+# To set up centos
 
 #Script to setup Tomcat on centOS/RHEL 6.x and 7.x
 
@@ -94,3 +95,8 @@ tomcatdown
 echo "Rebooting Tomcat"
 
 tomcatup
+#This is about Tomcat Installation
+
+# I am learning to push
+#I am learning to commit
+#I will ask a few more questions
